@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
 import java.io.File
 
-class Konfig(val pl: Plugin) {
+open class Konfig(val pl: Plugin) {
 
     private val file = File(pl.dataFolder, fileName)
     private val fileName: String
