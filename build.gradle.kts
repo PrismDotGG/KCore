@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.perkelle.dev.kcore"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.3-SNAPSHOT"
 
 repositories {
     mavenCentral()

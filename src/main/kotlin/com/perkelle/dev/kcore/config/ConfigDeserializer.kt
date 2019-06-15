@@ -21,10 +21,14 @@ class ConfigDeserializer {
         val instance = clazz.newInstance()
 
         clazz.declaredFields.forEach { field ->
+            val name =
+                if(field.isAnnotationPresent(FieldName::class.java)) field.getAnnotation(FieldName::class.java).name
+                else field.name
+
             if(builtIn.contains(field.type)) {
-                field.set(instance, raw.get(field.name))
+                field.set(instance, raw.get(name))
             } else {
-                field.set(instance, to(raw.getConfigurationSection(field.name) ?: return@forEach, field.type))
+                field.set(instance, to(raw.getConfigurationSection(name) ?: return@forEach, field.type))
             }
         }
 
