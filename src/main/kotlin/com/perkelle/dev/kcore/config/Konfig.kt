@@ -3,6 +3,7 @@ package com.perkelle.dev.kcore.config
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
 import java.io.File
+import java.lang.Exception
 
 open class Konfig(val pl: Plugin) {
 
@@ -18,6 +19,9 @@ open class Konfig(val pl: Plugin) {
     }
 
     inline fun<reified T> to() = ConfigDeserializer().to<T>(_config.defaultSection!!)
+
+    inline fun<reified T> getGeneric(key: String, default: T) = _config.get(key) as? T ?: default
+    inline fun<reified T> getGenericOrNull(key: String) = _config.get(key) as? T?
 
     fun save() = _config.save(file)
 
