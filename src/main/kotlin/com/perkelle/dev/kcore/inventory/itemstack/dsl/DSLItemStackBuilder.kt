@@ -9,6 +9,7 @@ import org.bukkit.attribute.AttributeModifier
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.Damageable
 
 fun itemstack(block: DSLItemStackBuilder.() -> Unit) = DSLItemStackBuilder().also(block).getStack()
 
@@ -21,6 +22,7 @@ class DSLItemStackBuilder {
 
     lateinit var type: Material
     var amount = 1
+    var damage = 0
 
     var name: String? = null
     var unbreakable = false
@@ -53,6 +55,7 @@ class DSLItemStackBuilder {
             addItemFlags(*flags.toTypedArray())
             isUnbreakable = unbreakable
             attributeModifiers = attributes
+            (this as Damageable).damage = damage
         }
 
         return stack
